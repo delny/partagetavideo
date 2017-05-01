@@ -1,0 +1,110 @@
+body{
+    font-family: 'Muli', sans-serif;
+}
+header {
+    background-color: darkgray;
+    width:100%;
+    text-align: center;
+}
+header .menu {
+    width:1170px;
+    margin:0 auto;
+}
+.logo_menu a span{
+    color: #075d74;
+    font-weight: bold;
+}
+.logo_menu a span+span{
+    padding-left:6px;
+    font-size: 24px;
+}
+.corps{
+    width:1170px;
+    margin:0 auto;
+    padding-top:51px;
+}
+
+/*Formulaire de connexion*/
+.form_signin {
+    padding:16px;
+}
+.error {
+    color:#F11;
+}
+
+
+/*Tableau*/
+table, tr,td,th {
+    border-collapse: collapse;
+}
+td, th {
+    border:1px solid #111;
+}
+
+/*Affichage des videos*/
+.titlevideo {
+    position:relative;
+}
+.modifvideo {
+    position: absolute;
+    top:0;
+    right: 0;
+    margin-right: 34px;
+    margin-top: 4px;
+    display: inline-block;
+    color:#11F;  
+}
+.deletevideo {
+    position: absolute;
+    top:0;
+    right: 0;
+    margin-right: 14px;
+    margin-top: 4px;
+    display: inline-block;
+    color:#F11;
+}
+.deletevideo a, .modifvideo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*miniature dans videos*/
+.miniature {
+    position:relative;
+}
+.logo_play {
+    visibility: hidden;
+    position:absolute;
+    top:40%;
+    left:30%;
+    width:42px;
+    height:42px;
+    padding:5px;
+    font-size: 32px;
+    background-color: rgba(255,255,255,0.8);
+    border-radius:50%;
+}
+.miniature:hover .logo_play {
+    visibility: visible;
+}
+
+/* si videos desactive*/
+.unactive {
+    filter:brightness(20%);
+}
+
+/*Espace admin*/
+.form_container {
+    width:1170px;
+    height:800px;
+    margin:0 auto;
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.form_container form label {
+    width:140px;
+}
