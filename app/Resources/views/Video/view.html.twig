@@ -18,8 +18,14 @@
 
                 <p>nombres de vues : {{ video.count }} -- nombres de vues unique : {{ video.vues.count }}</p>
                 {% if app.user %}
-                    {% if false %}
-                        <a href="#">
+                    {% set isFav = FALSE %}
+                    {% for favori in video.favoris %}
+                        {% if favori.user == app.user %}
+                            {% set isFav = TRUE %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if isFav %}
+                        <a href="{{ path('app_remove_fav',{'id':video.id}) }}">
                             <span class="glyphicon glyphicon-heart like" title="Retirer de mes favoris"></span>
                         </a>
                     {% else %}

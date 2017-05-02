@@ -19,8 +19,27 @@ class FavoriController extends Controller
 
         $favoriManager->addFavoriToVideo($this->getUser(),$video);
 
+        $this->addFlash('success','Vous avez ajouté cette vidéo à vos favoris');
+
         return $this->redirectToRoute('app_view_video', [
            'id' => $video->getId(),
+        ]);
+    }
+
+    /**
+     * @Route("/removefav/{id}", name="app_remove_fav")
+     */
+    public function removeFavoriAction(Video $video)
+    {
+        //appel du favori manager
+        $favoriManager = $this->get('app.favori_manager');
+
+        $favoriManager->removeFavoriToVideo($this->getUser(),$video);
+
+        $this->addFlash('success','Vous avez supprimé cette vidéo de vos favoris');
+
+        return $this->redirectToRoute('app_view_video', [
+            'id' => $video->getId(),
         ]);
     }
 }

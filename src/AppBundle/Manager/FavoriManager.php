@@ -40,6 +40,16 @@ class FavoriManager
         $this->manager->flush();
     }
 
+    public function delete(Favori $favori)
+    {
+        $this->manager->remove($favori);
+        $this->manager->flush();
+    }
+
+    /**
+     * @param User $user
+     * @param Video $video
+     */
     public function addFavoriToVideo(User $user,Video $video)
     {
         if(!$this->manager->getRepository(Favori::class)->getFavoriByUserAndVideo($user,$video))
@@ -48,6 +58,14 @@ class FavoriManager
             $favori->setVideo($video)
                 ->setUser($user);
             $this->save($favori);
+        }
+    }
+
+    public function removeFavoriToVideo(User $user,Video $video)
+    {
+        if ($favori = $this->manager->getRepository(Favori::class)->getFavoriByUserAndVideo($user,$video))
+        {
+            $this->delete($favori);
         }
     }
 }
