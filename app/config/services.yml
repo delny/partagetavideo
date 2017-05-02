@@ -19,3 +19,7 @@ services:
         class: AppBundle\Manager\VueManager
         arguments:
             - "@=service('doctrine').getManager()"
+    app.favori_manager:
+        class: AppBundle\Manager\FavoriManager
+        arguments:
+            - "@=service('doctrine').getManager()"

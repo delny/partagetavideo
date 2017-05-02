@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Video;
+namespace AppBundle\Controller;
 
 use AppBundle\Entity\Video;
 use AppBundle\Form\VideoType;
