@@ -6,7 +6,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             {% if app.user %}
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Ajouter une vid&eacute;o</a></li>
+                    <li><a href="{{ path('app_new_video') }}">Ajouter une vid&eacute;o</a></li>
                     <li><a href="#">Page profil</a></li>
                     <form method="post" action="#" class="navbar-form navbar-left " role="search">
                         <div class="form-group navbar-form-search">

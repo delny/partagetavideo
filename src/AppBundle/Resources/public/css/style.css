@@ -23,7 +23,9 @@ header .menu {
     margin:0 auto;
     padding-top:51px;
 }
-
+.flash-msg {
+    padding-top: 51px;
+}
 /*Formulaire de connexion*/
 .form_signin {
     padding:16px;
