@@ -23,8 +23,8 @@
                             <span class="glyphicon glyphicon-heart like" title="Retirer de mes favoris"></span>
                         </a>
                     {% else %}
-                        <a href="#">
-                            <span class="glyphicon glyphicon-heart-empty dislike" title="Ajouter de mes favoris"></span>
+                        <a href="{{ path('app_new_fav', {'id':video.id }) }}">
+                            <span class="glyphicon glyphicon-heart-empty dislike" title="Ajouter à mes favoris"></span>
                         </a>
                     {% endif %}
                     {{ video.favoris.count }}

@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\User;
+use AppBundle\Entity\Video;
+
 /**
  * FavoriRepository
  *
@@ -10,4 +13,14 @@ namespace AppBundle\Repository;
  */
 class FavoriRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getFavoriByUserAndVideo(User $user, Video $video)
+    {
+        return $this->createQueryBuilder('f')
+            ->select('f')
+            ->andWhere('f.user = :user')
+            ->andWhere('f.video = :video')
+            ->setParameters(['user' => $user, 'video' => $video])
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

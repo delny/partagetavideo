@@ -67,6 +67,24 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFavoris()
+    {
+        return $this->favoris;
+    }
+
+    /**
+     * @param mixed $favoris
+     * @return User
+     */
+    public function setFavoris($favoris)
+    {
+        $this->favoris = $favoris;
+        return $this;
+    }
+
 
 }
 
