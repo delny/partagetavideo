@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Video;
 
+use AppBundle\Entity\Video;
 use AppBundle\Form\VideoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -38,10 +39,18 @@ class VideoController extends Controller
             $this->addFlash('danger', 'Erreur : cette vidéo a déjà été posté !');
         }
 
-        //dump($form);
-        //exit();
         return $this->render(':Video:new.html.twig', [
            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/video/{id}", name="app_view_video")
+     */
+    public function viewAction(Video $video)
+    {
+        return $this->render(':Video:view.html.twig', [
+            'video' => $video,
         ]);
     }
 }

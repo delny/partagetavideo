@@ -1,0 +1,45 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %} Voir une vidéo {% endblock %}
+
+{% block content %}
+    <h1>Affichage d'une vid&eacute;o</h1>
+    {% if video %}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="#">{{ video.user.username }}</a> -- {{ video.titre }}
+                </h3>
+            </div>
+            <div class="panel-body">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.urlNumber }}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="panel-footer">
+                <p>nombres de vues : {{ video.count }} -- nombres de vues unique : nb_vues_unique</p>
+                {% if app.user %}
+                    {% if false %}
+                        <a href="#">
+                            <span class="glyphicon glyphicon-heart like" title="Retirer de mes favoris"></span>
+                        </a>
+                    {% else %}
+                        <a href="#">
+                            <span class="glyphicon glyphicon-heart-empty dislike" title="Ajouter de mes favoris"></span>
+                        </a>
+                    {% endif %}
+                    nb_favoris
+                    {% if false %}
+                        <p>Vous avez signal&eacute; cette vid&eacute;o</p>
+                    {% else %}
+                        <p>
+                            <a href="treat/signalement_add.php?id_video=<?php echo $video['id_video'];?>">
+                                Signaler cette vid&eacute;o
+                            </a>
+                        </p>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <p>Vidéo introuvable !</p>
+    {% endif %}
+{%  endblock %}
