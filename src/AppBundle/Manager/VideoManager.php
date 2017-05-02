@@ -45,11 +45,33 @@ class VideoManager
      */
     public function getAllVideos()
     {
-        return $this->manager->getRepository(Video::class)->findAll();
+        return $this->manager->getRepository(Video::class)->findBy([],['id' => 'DESC']);
     }
 
+    /**
+     * @param $url
+     * @return mixed
+     */
     public function getVideoByUrl($url)
     {
         return $this->manager->getRepository(Video::class)->getVideoByUrl($url);
+    }
+
+    /**
+     * @param $videoId
+     * @return Video|null|object
+     */
+    public function getVideoById($videoId)
+    {
+        return $this->manager->getRepository(Video::class)->find($videoId);
+    }
+
+    /**
+     * @param Video $video
+     */
+    public function increaseCount(Video $video)
+    {
+        $video->setCount($video->getCount()+1);
+        $this->save($video);
     }
 }

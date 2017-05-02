@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -73,6 +74,19 @@ class Video
      *     inversedBy="videos")
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Vue",
+     *     mappedBy="video"
+     *     )
+     */
+    private $vues;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Favori",
+     *     mappedBy="video")
+     */
+    private $favoris;
 
 
     /**
@@ -241,8 +255,41 @@ class Video
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getVues()
+    {
+        return $this->vues;
+    }
 
+    /**
+     * @param mixed $vues
+     * @return Video
+     */
+    public function setVues($vues)
+    {
+        $this->vues = $vues;
+        return $this;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getFavoris()
+    {
+        return $this->favoris;
+    }
+
+    /**
+     * @param mixed $favoris
+     * @return Video
+     */
+    public function setFavoris($favoris)
+    {
+        $this->favoris = $favoris;
+        return $this;
+    }
 
 }
 

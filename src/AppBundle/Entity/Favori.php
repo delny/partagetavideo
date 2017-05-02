@@ -35,6 +35,18 @@ class Favori
      */
     private $videoId;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Video",
+     *     inversedBy="favoris")
+     */
+    private $video;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User",
+     *     inversedBy="favoris")
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -93,5 +105,24 @@ class Favori
     {
         return $this->videoId;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param mixed $video
+     * @return Favori
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
+        return $this;
+    }
+
 }
 

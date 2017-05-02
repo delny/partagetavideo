@@ -31,13 +31,13 @@
                 <div class="panel-body miniature">
                     <figure>
                         <img src="http://img.youtube.com/vi/{{ video.urlNumber }}/0.jpg" alt="miniature" title="miniature"/>
-                        <figcaption>Voir la vid&eacute;o : <a href="#">{{ video.titre }}</a></figcaption>
+                        <figcaption>Voir la vid&eacute;o : <a href="{{ path('app_view_video', {'id':video.id }) }}">{{ video.titre }}</a></figcaption>
                     </figure>
-                    <a href="#">
+                    <a href="{{ path('app_view_video',{'id':video.id}) }}">
                         <span class="glyphicon glyphicon-play logo_play"></span></a>
                 </div>
                 <div class="panel-footer">
-                    <p>nombres de vues : <?php echo $count; ?> -- nombres de vues unique : <?php echo $count_unique; ?></p>
+                    <p>nombres de vues : {{ video.count }} -- nombres de vues unique : {{ video.vues.count }}</p>
                 </div>
             </div>
         {% endfor %}

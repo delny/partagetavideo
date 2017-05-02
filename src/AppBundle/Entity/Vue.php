@@ -35,6 +35,12 @@ class Vue
      */
     private $adresseIp;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Video",
+     *     inversedBy="vues")
+     */
+    private $video;
+
 
     /**
      * Get id
@@ -93,5 +99,25 @@ class Vue
     {
         return $this->adresseIp;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param mixed $video
+     * @return Vue
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
+        return $this;
+    }
+
+
 }
 
