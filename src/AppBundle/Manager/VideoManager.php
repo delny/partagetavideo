@@ -45,7 +45,7 @@ class VideoManager
      */
     public function getAllVideos()
     {
-        return $this->manager->getRepository(Video::class)->findAll();
+        return $this->manager->getRepository(Video::class)->findBy([],['id' => 'DESC']);
     }
 
     /**

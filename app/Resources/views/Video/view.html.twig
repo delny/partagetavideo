@@ -27,7 +27,7 @@
                             <span class="glyphicon glyphicon-heart-empty dislike" title="Ajouter de mes favoris"></span>
                         </a>
                     {% endif %}
-                    nb_favoris
+                    {{ video.favoris.count }}
                     {% if false %}
                         <p>Vous avez signal&eacute; cette vid&eacute;o</p>
                     {% else %}
