@@ -28,6 +28,12 @@ class User extends BaseUser
      */
     private $videos;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Favori",
+     *     mappedBy="user")
+     */
+    private $favoris;
+
     public function __construct()
     {
         parent::__construct();

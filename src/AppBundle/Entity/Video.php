@@ -82,10 +82,12 @@ class Video
      */
     private $vues;
 
-    public function __construct()
-    {
-        $this->vues = new ArrayCollection();
-    }
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Favori",
+     *     mappedBy="video")
+     */
+    private $favoris;
+
 
     /**
      * Get id
@@ -271,6 +273,23 @@ class Video
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFavoris()
+    {
+        return $this->favoris;
+    }
+
+    /**
+     * @param mixed $favoris
+     * @return Video
+     */
+    public function setFavoris($favoris)
+    {
+        $this->favoris = $favoris;
+        return $this;
+    }
 
 }
 
