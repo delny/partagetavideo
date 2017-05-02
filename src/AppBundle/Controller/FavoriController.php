@@ -42,4 +42,12 @@ class FavoriController extends Controller
             'id' => $video->getId(),
         ]);
     }
+
+    /**
+     * @Route("/myfav", name="app_list_fav")
+     */
+    public function listAction()
+    {
+        return $this->render(':Favori:list.html.twig',[]);
+    }
 }
