@@ -58,6 +58,15 @@ class VideoManager
     }
 
     /**
+     * @param $videoId
+     * @return Video|null|object
+     */
+    public function getVideoById($videoId)
+    {
+        return $this->manager->getRepository(Video::class)->find($videoId);
+    }
+
+    /**
      * @param Video $video
      */
     public function increaseCount(Video $video)

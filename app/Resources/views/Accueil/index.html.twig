@@ -37,7 +37,7 @@
                         <span class="glyphicon glyphicon-play logo_play"></span></a>
                 </div>
                 <div class="panel-footer">
-                    <p>nombres de vues : {{ video.count }} -- nombres de vues unique : nb_vues_unique</p>
+                    <p>nombres de vues : {{ video.count }} -- nombres de vues unique : {{ video.vues.count }}</p>
                 </div>
             </div>
         {% endfor %}

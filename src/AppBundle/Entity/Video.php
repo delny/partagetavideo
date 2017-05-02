@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -80,6 +81,11 @@ class Video
      *     )
      */
     private $vues;
+
+    public function __construct()
+    {
+        $this->vues = new ArrayCollection();
+    }
 
     /**
      * Get id

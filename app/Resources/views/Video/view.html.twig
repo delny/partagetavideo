@@ -15,7 +15,8 @@
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.urlNumber }}" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="panel-footer">
-                <p>nombres de vues : {{ video.count }} -- nombres de vues unique : nb_vues_unique</p>
+
+                <p>nombres de vues : {{ video.count }} -- nombres de vues unique : {{ video.vues.count }}</p>
                 {% if app.user %}
                     {% if false %}
                         <a href="#">
