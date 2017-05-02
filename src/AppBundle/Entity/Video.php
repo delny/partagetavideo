@@ -74,6 +74,12 @@ class Video
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Vue",
+     *     mappedBy="video"
+     *     )
+     */
+    private $vues;
 
     /**
      * Get id
@@ -241,7 +247,23 @@ class Video
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getVues()
+    {
+        return $this->vues;
+    }
 
+    /**
+     * @param mixed $vues
+     * @return Video
+     */
+    public function setVues($vues)
+    {
+        $this->vues = $vues;
+        return $this;
+    }
 
 
 }

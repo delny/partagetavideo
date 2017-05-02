@@ -56,7 +56,7 @@ class VideoController extends Controller
         //augmentation des compteurs
         $videoManager->increaseCount($video);
         $vueManager->increaseCount($video);
-        
+
 
         return $this->render(':Video:view.html.twig', [
             'video' => $video,
