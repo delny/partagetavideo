@@ -13,6 +13,11 @@ class AccueilController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render(':Accueil:index.html.twig', []);
+        //appel du video manager
+        $videoManager = $this->get('app.video_manager');
+
+        return $this->render(':Accueil:index.html.twig', [
+            'videos' => $videoManager->getAllVideos(),
+        ]);
     }
 }
