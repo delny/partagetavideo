@@ -16,8 +16,24 @@
     <body>
     <!-- Debut menu-->
     {% include 'menu.html.twig' %}
+    {% if app.session.started and app.session.flashBag.peekAll is not empty %}
+        <div class="flash-msg">
+            {% for type, messages in app.session.flashBag.all %}
+                {% for message in messages %}
+                    {# Bootstrap alert, see http://getbootstrap.com/components/#alerts #}
+                    <div class="alert alert-dismissible alert-{{ type }}" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                        {{ message|trans }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
     <!-- Fin menu-->
-    <div class="container" style="padding-top:120px;">
+    <div class="corps">
         {% block content %}{% endblock %}
     </div>
     </body>

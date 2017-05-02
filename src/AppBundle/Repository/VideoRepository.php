@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class VideoRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getVideoByUrl($url)
+    {
+        return $this->createQueryBuilder('v')
+            ->select('v')
+            ->andWhere('v.url = :url')
+            ->setParameter(':url', $url)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

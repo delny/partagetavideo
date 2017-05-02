@@ -33,6 +33,8 @@ class VideoManager
     {
         if ($video->getId() === null)
         {
+            $video->setCount(0);
+            $video->setIsActive(1);
             $this->manager->persist($video);
         }
         $this->manager->flush();
@@ -44,5 +46,10 @@ class VideoManager
     public function getAllVideos()
     {
         return $this->manager->getRepository(Video::class)->findAll();
+    }
+
+    public function getVideoByUrl($url)
+    {
+        return $this->manager->getRepository(Video::class)->getVideoByUrl($url);
     }
 }

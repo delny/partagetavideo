@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Video;
 
 use AppBundle\Form\VideoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -26,9 +26,20 @@ class VideoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $video->setUser($this->getUser());
             //si formulaire valide
+            if(!$videoManager->getVideoByUrl($video->getUrl()))
+            {
+                $videoManager->save($video);
+                $this->addFlash('success','Votre vidéo a bien été ajouté !');
+                return $this->redirectToRoute('homepage');
+            }
+
+            $this->addFlash('danger', 'Erreur : cette vidéo a déjà été posté !');
         }
 
+        //dump($form);
+        //exit();
         return $this->render(':Video:new.html.twig', [
            'form' => $form->createView(),
         ]);

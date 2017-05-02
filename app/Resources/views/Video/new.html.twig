@@ -4,4 +4,32 @@
 
 {% block content %}
     <h1>Ajouter une vidéo</h1>
+    {{ form_start(form) }}
+
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.titre,"Titre de la vidéo") }}
+        {% if form_errors(form.titre) %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.titre) }}
+            </div>
+        {% endif %}
+        {{ form_widget(form.titre, {'attr': {'class':'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.url,"url de la video") }}
+        {% if form_errors(form.url) %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.url) }}
+            </div>
+        {% endif %}
+        {{ form_widget(form.url, {'attr': {'class':'form-control'}}) }}
+    </div>
+
+    {{ form_rest(form) }}
+
+    <button type="submit" class="btn btn-default">Ajouter</button>
+    {{ form_end(form) }}
 {% endblock %}

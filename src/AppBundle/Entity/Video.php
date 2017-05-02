@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Video
@@ -32,6 +33,12 @@ class Video
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255)
+     *
+     * @Assert\Regex(
+     *     pattern="/^http[s]{0,1}:\/\/www.youtube.com\/watch\?v=[a-zA-Z0-9]{11}$/i",
+     *     match= true,
+     *     message="l'url n'est pas valide!"
+     * )
      */
     private $url;
 
