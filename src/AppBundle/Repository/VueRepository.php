@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class VueRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getVueByVideoIdAndAdresseIp($videoId,$adresseIp)
+    {
+        return $this->createQueryBuilder('v')
+            ->select('v')
+            ->andWhere('v.videoId = :videoId')
+            ->andWhere('v.adresseIp = :adresseIp')
+            ->setParameters(['videoId'=> $videoId,'adresseIp' => $adresseIp])
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

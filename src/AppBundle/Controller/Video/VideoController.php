@@ -49,6 +49,15 @@ class VideoController extends Controller
      */
     public function viewAction(Video $video)
     {
+        //appels des manager
+        $videoManager = $this->get('app.video_manager');
+        $vueManager = $this->get('app.vue_manager');
+
+        //augmentation des compteurs
+        $videoManager->increaseCount($video);
+        $vueManager->increaseCount($video);
+        
+
         return $this->render(':Video:view.html.twig', [
             'video' => $video,
         ]);

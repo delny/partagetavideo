@@ -15,3 +15,7 @@ services:
         class: AppBundle\Manager\VideoManager
         arguments:
             - "@=service('doctrine').getManager()"
+    app.vue_manager:
+        class: AppBundle\Manager\VueManager
+        arguments:
+            - "@=service('doctrine').getManager()"

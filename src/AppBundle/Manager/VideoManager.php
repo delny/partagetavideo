@@ -48,8 +48,21 @@ class VideoManager
         return $this->manager->getRepository(Video::class)->findAll();
     }
 
+    /**
+     * @param $url
+     * @return mixed
+     */
     public function getVideoByUrl($url)
     {
         return $this->manager->getRepository(Video::class)->getVideoByUrl($url);
+    }
+
+    /**
+     * @param Video $video
+     */
+    public function increaseCount(Video $video)
+    {
+        $video->setCount($video->getCount()+1);
+        $this->save($video);
     }
 }
