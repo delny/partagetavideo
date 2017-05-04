@@ -11,15 +11,15 @@
         {% if csrf_token %}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
         {% endif %}
-        <div class="form-grou">
+        <div class="form-group">
             <label for="username" class="label_index">Nom d'utilisateur</label>
             <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
         </div>
-        <div class="form-grou">
+        <div class="form-group">
             <label for="password" class="label_index">Mot de passe</label>
             <input class="form-control" type="password" id="password" name="_password" required="required" />
         </div>
-        <div class="form-grou">
+        <div class="form-group">
             <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
             <label for="remember_me" class="label_index"><span class="ui"></span>Se souvenir de moi</label>
         </div>
