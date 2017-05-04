@@ -41,6 +41,15 @@ class VideoManager
     }
 
     /**
+     * @param Video $video
+     */
+    public function delete(Video $video)
+    {
+        $this->manager->remove($video);
+        $this->manager->flush();
+    }
+
+    /**
      * @return Video[]|array
      */
     public function getAllVideos()

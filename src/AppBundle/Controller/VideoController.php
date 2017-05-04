@@ -91,4 +91,19 @@ class VideoController extends Controller
             'video' => $video,
         ]);
     }
+
+    /**
+     * @Route("/video/delete/{id}", name="app_delete_video")
+     */
+    public function deleteAction(Video $video)
+    {
+        if ($video->getUser() == $this->getUser())
+        {
+            //on supprime la video
+            $this->get('app.video_manager')->delete($video);
+            $this->addFlash('success','Votre vidéo a été supprimé !');
+        }
+
+        return $this->redirectToRoute('homepage');
+    }
 }

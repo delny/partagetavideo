@@ -5,7 +5,7 @@
         </h3>
         {% if app.user and app.user == video.user %}
             <div class="deletevideo">
-                <a href="#" onclick="confirmdelete({{ video.id }});return false;" >
+                <a href="{{ path('app_delete_video', {'id':video.id}) }}" onclick="confirmdelete({{ video.id }});return false;" >
                     <span class="glyphicon glyphicon-remove"></span>
                 </a>
             </div>
