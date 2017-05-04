@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ userProfil.username }} {% endblock %}
+
+{% block content %}
+    <h1>Profil de {{ userProfil.username }}</h1>
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+        {% if app.user == userProfil %}
+            <h2>Liste de mes vidéos</h2>
+        {% else %}
+            <h2>Liste de ses vidéos</h2>
+        {% endif %}
+        {% if userProfil.videos is not empty %}
+            {% for video in userProfil.videos %}
+                {% include ':Video:list.html.twig' %}
+            {% endfor %}
+        {% else %}
+            <p>Aucune Vid&eacute;o !</p>
+        {% endif %}
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        {% include 'rightcolumn.html.twig' %}
+    </div>
+{% endblock %}

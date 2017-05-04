@@ -21,7 +21,7 @@ header .menu {
 .corps{
     width:1170px;
     margin:0 auto;
-    padding-top:51px;
+    padding-top:60px;
 }
 .flash-msg {
     padding-top: 51px;
@@ -44,10 +44,10 @@ td, th {
 }
 
 /*Affichage des videos*/
-.titlevideo {
+.titlevideo, .titledonnees {
     position:relative;
 }
-.modifvideo {
+.modifvideo, .modifdonnees {
     position: absolute;
     top:0;
     right: 0;

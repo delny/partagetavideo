@@ -1,0 +1,31 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="page-header">
+    <h1>Mes paramètres</h1>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a data-toggle="tab" href="#home" role="tab">Profil</a></li>
+    <li><a href="{{ path('fos_user_change_password') }}">Mon compte</a></li>
+</ul>
+
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="home">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="titledonnees">
+                    <h2>Mes données</h2>
+                    <div class="modifdonnees">
+                        <a href="{{ path('fos_user_profile_edit') }}">
+                            <span class="glyphicon glyphicon-pencil"></span>Modifier
+                        </a>
+                    </div>
+                </div>
+                <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+                <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
