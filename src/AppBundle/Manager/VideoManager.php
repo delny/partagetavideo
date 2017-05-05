@@ -83,4 +83,12 @@ class VideoManager
         $video->setCount($video->getCount()+1);
         $this->save($video);
     }
+
+    /**
+     * @return array
+     */
+    public function getTopVideos()
+    {
+        return $this->manager->getRepository(Video::class)->getTopVideos();
+    }
 }

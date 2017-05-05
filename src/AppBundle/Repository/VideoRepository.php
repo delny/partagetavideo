@@ -10,6 +10,10 @@ namespace AppBundle\Repository;
  */
 class VideoRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $url
+     * @return mixed
+     */
     public function getVideoByUrl($url)
     {
         return $this->createQueryBuilder('v')
@@ -18,5 +22,21 @@ class VideoRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter(':url', $url)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function getTopVideos()
+    {
+        return $this->createQueryBuilder('v')
+            ->select('v')
+            ->andWhere('v.isActive = :isActive')
+            ->andWhere('v.count > :count')
+            ->setParameters([':isActive' => 1,':count' => 2])
+            ->addOrderBy('v.count', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult();
     }
 }

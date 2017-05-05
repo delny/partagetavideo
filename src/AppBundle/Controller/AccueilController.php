@@ -19,6 +19,7 @@ class AccueilController extends Controller
         return $this->render(':Accueil:index.html.twig', [
             'videos' => $videoManager->getAllVideos(),
             'topUsers' => $this->getUserManager()->getTopUsers(),
+            'topVideos' => $videoManager->getTopVideos(),
         ]);
     }
 
