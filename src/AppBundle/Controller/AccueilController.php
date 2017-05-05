@@ -18,6 +18,15 @@ class AccueilController extends Controller
 
         return $this->render(':Accueil:index.html.twig', [
             'videos' => $videoManager->getAllVideos(),
+            'topUsers' => $this->getUserManager()->getTopUsers(),
         ]);
+    }
+
+    /**
+     * @return \AppBundle\Manager\UserManager|object
+     */
+    private function getUserManager()
+    {
+        return $this->get('app.user_manager');
     }
 }

@@ -25,4 +25,12 @@
      {
          return new User();
      }
+
+     /**
+      * @return array
+      */
+     public function getTopUsers()
+     {
+         return $this->manager->getRepository(User::class)->getTopUsers();
+     }
  }

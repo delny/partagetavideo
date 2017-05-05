@@ -1,6 +1,8 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\User;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 /**
  * UserRepository
@@ -10,4 +12,26 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return array
+     */
+    public function getTopUsers()
+    {
+        $sql = 'SELECT COUNT(video.id),u.* ';
+        $sql .= 'FROM video JOIN fos_user AS u ON video.user_id = u.id ';
+        $sql .= 'WHERE (video.is_active = 1 AND u.enabled = 1) ';
+        $sql .= 'GROUP BY user_id ORDER BY COUNT(video.id) DESC LIMIT 3';
+
+        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addEntityResult(User::class, 'u');
+
+        // On mappe le nom de chaque colonne en base de données sur les attributs de nos entités
+        foreach ($this->getClassMetadata()->fieldMappings as $obj) {
+            $rsm->addFieldResult("u", $obj["columnName"], $obj["fieldName"]);
+        }
+
+        $stmt = $this->getEntityManager()->createNativeQuery($sql, $rsm);
+
+        return $stmt->getResult();
+    }
 }
