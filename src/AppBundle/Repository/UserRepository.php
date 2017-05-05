@@ -34,4 +34,35 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
 
         return $stmt->getResult();
     }
+
+    /**
+     * @param $nom
+     * @return array
+     */
+    public function lookForUsers($nom)
+    {
+        $tableUser = $this->getClassMetadata()->getTableName();
+
+        $sql = 'SELECT DISTINCT u.*,COUNT(f.id) as nombre_favoris ';
+        $sql .= 'FROM '.$tableUser.' AS u JOIN video AS v ON v.user_id = u.id JOIN favori AS f ON f.video_id = v.id ';
+        $sql .= 'WHERE u.enabled= :isActive AND username LIKE :nom ';
+        $sql .= 'GROUP BY v.user_id ';
+        $sql .= 'UNION ';
+        $sql .= 'SELECT u.*, 0 as nombre_favoris FROM fos_user AS u ';
+        $sql .= 'WHERE u.enabled = :isActive AND username LIKE :nom ';
+        $sql .= 'ORDER BY nombre_favoris DESC';
+
+        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addEntityResult(User::class, 'u');
+
+        // On mappe le nom de chaque colonne en base de données sur les attributs de nos entités
+        foreach ($this->getClassMetadata()->fieldMappings as $obj) {
+            $rsm->addFieldResult("u", $obj["columnName"], $obj["fieldName"]);
+        }
+
+        $stmt = $this->getEntityManager()->createNativeQuery($sql, $rsm);
+        $stmt->setParameters([':isActive' => 1, ':nom' => '%'.$nom.'%']);
+
+        return $stmt->getResult();
+    }
 }

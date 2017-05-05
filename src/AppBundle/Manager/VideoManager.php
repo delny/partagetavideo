@@ -4,6 +4,7 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Video;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\Expr\Select;
 
 class VideoManager
 {
@@ -90,5 +91,14 @@ class VideoManager
     public function getTopVideos()
     {
         return $this->manager->getRepository(Video::class)->getTopVideos();
+    }
+
+    /**
+     * @param $nom
+     * @return array
+     */
+    public function lookForVideos($nom)
+    {
+        return $this->manager->getRepository(Video::class)->lookForVideos($nom);
     }
 }

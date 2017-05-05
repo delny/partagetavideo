@@ -1,0 +1,47 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}Résultat de la recherche{% endblock %}
+
+{% block content %}
+<h2>Utilisateurs trouvés</h2>
+    {% if usersFound %}
+        <ul class="list-group">
+        {% for user in usersFound %}
+            {% set nbFav = 0 %}
+            {% for video in user.videos %}
+                {% set nbFav = nbFav + video.favoris.count %}
+            {% endfor %}
+            <a href="{{ path('app_profil_view',{'username': user.username}) }}" class="list-group-item">
+                <span class="badge">
+                    {% if nbFav > 1 %}
+                        {{ nbFav }} favoris reçus
+                    {% elseif nbFav == 1 %}
+                        1 favori reçu
+                    {% else %}
+                        aucun favori reçu
+                    {% endif %}
+
+                </span>
+                {{ user.username }}
+            </a>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <div class="alert alert-warning">Aucun utilisateur trouvé !</div>
+    {% endif %}
+
+    <h2>Vidéos trouvés</h2>
+    {% if videosFound %}
+        <ul class="list-group">
+        {% for video in videosFound %}
+            <a href="{{ path('app_view_video',{'id':video.id}) }}" class="list-group-item">
+                {{ video.user.username }} -- {{ video.titre }}<br />
+                {{ video.vues.count }} vues uniques
+                <span class="badge">{{ video.count }} vues</span>
+            </a>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <div class="alert alert-warning">Aucune vidéo trouvée !</div>
+    {% endif %}
+{% endblock %}
