@@ -48,6 +48,25 @@ class FavoriController extends Controller
      */
     public function listAction()
     {
-        return $this->render(':Favori:list.html.twig',[]);
+        return $this->render(':Favori:list.html.twig',[
+            'topUsers' => $this->getUserManager()->getTopUsers(),
+            'topVideos' => $this->getVideoManager()->getTopVideos(),
+        ]);
+    }
+
+    /**
+     * @return \AppBundle\Manager\UserManager|object
+     */
+    private function getUserManager()
+    {
+        return $this->get('app.user_manager');
+    }
+
+    /**
+     * @return \AppBundle\Manager\VideoManager|object
+     */
+    private function getVideoManager()
+    {
+        return $this->get('app.video_manager');
     }
 }

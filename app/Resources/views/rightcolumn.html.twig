@@ -1,6 +1,29 @@
 <div class="col-lg-12 col-xs-12">
     <h2>Top Utilisateurs</h2>
+    {% if topUsers %}
+        <ul class="list-group">
+        {% for user in topUsers %}
+            {% if app.user != user %}
+                <a href="{{ path('app_profil_view',{'username': user.username}) }}" class="list-group-item">
+                    <span class="badge">{{ user.videos.count }}</span>
+                    {{ user.username }}
+                </a>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% endif %}
 </div>
 <div class="col-lg-12 col-xs-12">
     <h2>Top Vid&eacute;os</h2>
+    {% if topVideos %}
+        <ul class="list-group">
+            {% for video in topVideos %}
+                <a href="{{ path('app_view_video',{'id':video.id}) }}" class="list-group-item">
+                    {{ video.user.username }} -- {{ video.titre }}<br />
+                    {{ video.vues.count }} vues uniques
+                    <span class="badge">{{ video.count }} vues</span>
+                </a>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </div>

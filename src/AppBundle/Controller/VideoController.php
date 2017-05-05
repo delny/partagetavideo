@@ -61,4 +61,49 @@ class VideoController extends Controller
             'video' => $video,
         ]);
     }
+
+    /**
+     * @Route("/video/edit/{id}", name="app_edit_video")
+     */
+    public function editAction(Request $request,Video $video)
+    {
+        if ($video->getUser() != $this->getUser())
+        {
+            return $this->redirectToRoute('homepage');
+        }
+
+        //appel manager
+        $videoManager = $this->get('app.video_manager');
+
+        //creation formulaire
+        $form = $this->createForm(VideoType::class, $video);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            //si formulaire valide
+            $videoManager->save($video);
+            $this->addFlash('success','Votre vidéo a bien été mis à jour !');
+        }
+
+        return $this->render(':Video:edit.html.twig', [
+            'form' => $form->createView(),
+            'video' => $video,
+        ]);
+    }
+
+    /**
+     * @Route("/video/delete/{id}", name="app_delete_video")
+     */
+    public function deleteAction(Video $video)
+    {
+        if ($video->getUser() == $this->getUser())
+        {
+            //on supprime la video
+            $this->get('app.video_manager')->delete($video);
+            $this->addFlash('success','Votre vidéo a été supprimé !');
+        }
+
+        return $this->redirectToRoute('homepage');
+    }
 }

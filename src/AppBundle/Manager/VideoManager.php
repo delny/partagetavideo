@@ -41,6 +41,15 @@ class VideoManager
     }
 
     /**
+     * @param Video $video
+     */
+    public function delete(Video $video)
+    {
+        $this->manager->remove($video);
+        $this->manager->flush();
+    }
+
+    /**
      * @return Video[]|array
      */
     public function getAllVideos()
@@ -73,5 +82,13 @@ class VideoManager
     {
         $video->setCount($video->getCount()+1);
         $this->save($video);
+    }
+
+    /**
+     * @return array
+     */
+    public function getTopVideos()
+    {
+        return $this->manager->getRepository(Video::class)->getTopVideos();
     }
 }
