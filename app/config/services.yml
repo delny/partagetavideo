@@ -23,3 +23,7 @@ services:
         class: AppBundle\Manager\FavoriManager
         arguments:
             - "@=service('doctrine').getManager()"
+    app.reporting_manager:
+        class: AppBundle\Manager\ReportingManager
+        arguments:
+            - "@=service('doctrine').getManager()"

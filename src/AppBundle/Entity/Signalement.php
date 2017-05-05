@@ -35,6 +35,14 @@ class Signalement
      */
     private $adresseIp;
 
+    /**
+     * @var Video
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Video",
+     *     inversedBy="signalements")
+     */
+    private $video;
+
 
     /**
      * Get id
@@ -93,5 +101,24 @@ class Signalement
     {
         return $this->adresseIp;
     }
+
+    /**
+     * @return Video
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param Video $video
+     * @return Signalement
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
+        return $this;
+    }
+
 }
 

@@ -88,6 +88,12 @@ class Video
      */
     private $favoris;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Signalement",
+     *     mappedBy="video")
+     */
+    private $signalements;
+
 
     /**
      * Get id
@@ -288,6 +294,24 @@ class Video
     public function setFavoris($favoris)
     {
         $this->favoris = $favoris;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSignalements()
+    {
+        return $this->signalements;
+    }
+
+    /**
+     * @param mixed $signalements
+     * @return Video
+     */
+    public function setSignalements($signalements)
+    {
+        $this->signalements = $signalements;
         return $this;
     }
 
