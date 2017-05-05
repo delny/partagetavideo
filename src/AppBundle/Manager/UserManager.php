@@ -33,4 +33,13 @@
      {
          return $this->manager->getRepository(User::class)->getTopUsers();
      }
+
+     /**
+      * @param $nom
+      * @return User[]|array
+      */
+     public function lookForUsers($nom)
+     {
+         return $this->manager->getRepository(User::class)->lookForUsers($nom);
+     }
  }

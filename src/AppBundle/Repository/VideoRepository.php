@@ -39,4 +39,19 @@ class VideoRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @param $nom
+     * @return array
+     */
+    public function lookForVideos($nom)
+    {
+        return $this->createQueryBuilder('v')
+            ->select('v')
+            ->andWhere('v.isActive = :isActive')
+            ->andWhere('v.titre LIKE :nom')
+            ->setParameters([':isActive' => 1,':nom' => '%'.$nom.'%'])
+            ->getQuery()
+            ->getResult();
+    }
 }
