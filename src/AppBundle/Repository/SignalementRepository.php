@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Video;
+
 /**
  * SignalementRepository
  *
@@ -10,4 +12,19 @@ namespace AppBundle\Repository;
  */
 class SignalementRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param Video $video
+     * @param $adresseIp
+     * @return mixed
+     */
+    public function getSignalementByVideoAndAdresseIp(Video $video, $adresseIp)
+    {
+        return $this->createQueryBuilder('s')
+            ->select('s')
+            ->andWhere('s.video = :video')
+            ->andWhere('s.adresseIp = :adresseIp')
+            ->setParameters(['video' => $video, 'adresseIp' => $adresseIp])
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

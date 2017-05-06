@@ -8,7 +8,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <a href="#">{{ video.user.username }}</a> -- {{ video.titre }}
+                    <a href="{{ path('app_profil_view',{'username':video.user.username}) }}">{{ video.user.username }}</a> -- {{ video.titre }}
                 </h3>
             </div>
             <div class="panel-body">
@@ -34,11 +34,15 @@
                         </a>
                     {% endif %}
                     {{ video.favoris.count }}
-                    {% if false %}
-                        <p>Vous avez signal&eacute; cette vid&eacute;o</p>
+                    {% if isReporting %}
+                        <p>Vous avez signal&eacute; cette vid&eacute;o --
+                            <a href="{{ path('app_reporting_remove', {'id':video.id}) }}">
+                                Annuler
+                            </a>
+                        </p>
                     {% else %}
                         <p>
-                            <a href="#">
+                            <a href="{{ path('app_reporting_new',{'id':video.id}) }}">
                                 Signaler cette vid&eacute;o
                             </a>
                         </p>

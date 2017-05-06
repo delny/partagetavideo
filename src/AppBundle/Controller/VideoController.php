@@ -52,6 +52,7 @@ class VideoController extends Controller
         //appels des manager
         $videoManager = $this->get('app.video_manager');
         $vueManager = $this->get('app.vue_manager');
+        $reportingManager = $this->get('app.reporting_manager');
 
         //augmentation des compteurs
         $videoManager->increaseCount($video);
@@ -59,6 +60,7 @@ class VideoController extends Controller
 
         return $this->render(':Video:view.html.twig', [
             'video' => $video,
+            'isReporting' => $reportingManager->isReported($video),
         ]);
     }
 
