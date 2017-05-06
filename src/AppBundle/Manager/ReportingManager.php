@@ -89,4 +89,12 @@ class ReportingManager
             return FALSE;
         }
     }
+
+    /**
+     * @return array
+     */
+    public function getReportedVideos()
+    {
+        return $this->manager->getRepository(Video::class)->getReportedVideos();
+    }
 }
