@@ -22,4 +22,19 @@ class ReportingController extends Controller
             'id' => $video->getId(),
         ]);
     }
+
+    /**
+     * @Route("/removereporting/{id}", name="app_reporting_remove")
+     */
+    public function removeReportingAction(Video $video)
+    {
+        //reportingManager
+        $reportingManager = $this->get('app.reporting_manager');
+
+        $reportingManager->removeSignalementToVideo($video);
+
+        return $this->redirectToRoute('app_view_video', [
+            'id' => $video->getId(),
+        ]);
+    }
 }

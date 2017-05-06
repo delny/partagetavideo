@@ -34,8 +34,12 @@
                         </a>
                     {% endif %}
                     {{ video.favoris.count }}
-                    {% if false %}
-                        <p>Vous avez signal&eacute; cette vid&eacute;o</p>
+                    {% if isReporting %}
+                        <p>Vous avez signal&eacute; cette vid&eacute;o --
+                            <a href="{{ path('app_reporting_remove', {'id':video.id}) }}">
+                                Annuler
+                            </a>
+                        </p>
                     {% else %}
                         <p>
                             <a href="{{ path('app_reporting_new',{'id':video.id}) }}">

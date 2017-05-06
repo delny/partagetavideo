@@ -3,6 +3,7 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Signalement;
+use AppBundle\Entity\Video;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ReportingManager
@@ -39,17 +40,53 @@ class ReportingManager
     }
 
     /**
+     * @param Signalement $signalement
+     */
+    public function remove(Signalement $signalement)
+    {
+        $this->manager->remove($signalement);
+        $this->manager->flush();
+    }
+
+    /**
      * @param $video
      */
-    public function addSignalementToVideo($video)
+    public function addSignalementToVideo(Video $video)
     {
-        $adresseIp = $_SERVER['REMOTE_ADDR'];
-        if (!$this->manager->getRepository(Signalement::class)->getSignalementByVideoAndAdresseIp($video,$adresseIp))
+        if (!$this->isReported($video))
         {
             $signalement = $this->create();
             $signalement->setVideo($video);
-            $signalement->setAdresseIp($adresseIp);
+            $signalement->setAdresseIp($_SERVER['REMOTE_ADDR']);
             $this->save($signalement);
+        }
+    }
+
+    /**
+     * @param Video $video
+     */
+    public function removeSignalementToVideo(Video $video)
+    {
+        if ($signalement = $this->manager->getRepository(Signalement::class)->getSignalementByVideoAndAdresseIp($video,$_SERVER['REMOTE_ADDR']))
+        {
+            $this->remove($signalement);
+        }
+    }
+
+    /**
+     * @param Video $video
+     * @return bool
+     */
+    public function isReported(Video $video)
+    {
+        $adresseIp = $_SERVER['REMOTE_ADDR'];
+        if($this->manager->getRepository(Signalement::class)->getSignalementByVideoAndAdresseIp($video,$adresseIp))
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
         }
     }
 }
