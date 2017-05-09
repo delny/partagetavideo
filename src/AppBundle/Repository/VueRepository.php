@@ -2,8 +2,6 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Video;
-
 /**
  * VueRepository
  *
@@ -12,6 +10,11 @@ use AppBundle\Entity\Video;
  */
 class VueRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $videoId
+     * @param $adresseIp
+     * @return mixed
+     */
     public function getVueByVideoIdAndAdresseIp($videoId,$adresseIp)
     {
         return $this->createQueryBuilder('v')

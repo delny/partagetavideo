@@ -4,7 +4,6 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Video;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Query\Expr\Select;
 
 class VideoManager
 {
