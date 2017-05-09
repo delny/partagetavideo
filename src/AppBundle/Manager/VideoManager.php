@@ -53,9 +53,17 @@ class VideoManager
     /**
      * @return Video[]|array
      */
-    public function getAllVideos()
+    public function getAllVideos($offset,$limit)
     {
-        return $this->manager->getRepository(Video::class)->findBy([],['id' => 'DESC']);
+        return $this->manager->getRepository(Video::class)->getAllVideos($offset,$limit);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountVideos()
+    {
+        return $this->manager->getRepository(Video::class)->getCountVideos();
     }
 
     /**
