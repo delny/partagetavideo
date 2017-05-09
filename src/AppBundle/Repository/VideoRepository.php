@@ -103,7 +103,7 @@ class VideoRepository extends \Doctrine\ORM\EntityRepository
 
         // On mappe le nom de chaque colonne en base de données sur les attributs de nos entités
         foreach ($this->getClassMetadata()->fieldMappings as $obj) {
-            $rsm->addFieldResult("u", $obj["columnName"], $obj["fieldName"]);
+            $rsm->addFieldResult("v", $obj["columnName"], $obj["fieldName"]);
         }
 
         $stmt = $this->getEntityManager()->createNativeQuery($sql, $rsm);
