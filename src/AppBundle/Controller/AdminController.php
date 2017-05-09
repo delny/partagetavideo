@@ -11,7 +11,7 @@ class AdminController extends Controller
     /**
      * @Route("/admin", name="app_admin_index")
      */
-    public function AdminAction()
+    public function adminAction()
     {
         return $this->render(':Admin:admin.html.twig', [
             'videos' => $this->getReportingManager()->getReportedVideos(),
