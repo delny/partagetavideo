@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Administration{% endblock %}
+
+{% block content %}
+    <h1>Espace Administration</h1>
+    <h2>Liste des Vidéos signalées</h2>
+    {% if videos %}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>titre</th>
+                <th>voir</th>
+                <th>Nombres de signalements</th>
+                <th>Activer / Désactiver</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for video in videos %}
+                <tr>
+                    <td>{{ video.titre }}</td>
+                    <td><a href="{{ path('app_view_video',{'id':video.id}) }}">Voir la vidéo</a></td>
+                    <td>{{ video.signalements.count }}</td>
+                    <td>
+                        {% if video.isActive %}
+                            <a href="{{ path('app_video_desactive',{'id':video.id}) }}">Désactiver cette vidéo</a>
+                        {% else %}
+                            <a href="{{ path('app_video_active',{'id':video.id}) }}">(Ré)activer cette vidéo</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucune vidéo signalée</p>
+    {% endif %}
+{% endblock %}

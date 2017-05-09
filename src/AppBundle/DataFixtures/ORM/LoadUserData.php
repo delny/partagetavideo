@@ -37,9 +37,9 @@ class LoadUserData extends AbstractFixture implements FixtureInterface,Container
                 'enabled' => 1,
             ],
             [
-                'username' => 'toto' ,
-                'email' => 'toto@free.fr',
-                'password' => 'toto',
+                'username' => 'titi' ,
+                'email' => 'titi@free.fr',
+                'password' => 'titi',
                 'enabled' => 1,
             ],
             [
