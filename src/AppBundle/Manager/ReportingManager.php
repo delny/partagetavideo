@@ -51,13 +51,13 @@ class ReportingManager
     /**
      * @param $video
      */
-    public function addSignalementToVideo(Video $video)
+    public function addSignalementToVideo(Video $video,$adresseIp)
     {
-        if (!$this->isReported($video))
+        if (!$this->isReported($video,$adresseIp))
         {
             $signalement = $this->create();
             $signalement->setVideo($video);
-            $signalement->setAdresseIp($_SERVER['REMOTE_ADDR']);
+            $signalement->setAdresseIp($adresseIp);
             $this->save($signalement);
         }
     }
@@ -65,9 +65,9 @@ class ReportingManager
     /**
      * @param Video $video
      */
-    public function removeSignalementToVideo(Video $video)
+    public function removeSignalementToVideo(Video $video,$adresseIp)
     {
-        if ($signalement = $this->manager->getRepository(Signalement::class)->getSignalementByVideoAndAdresseIp($video,$_SERVER['REMOTE_ADDR']))
+        if ($signalement = $this->manager->getRepository(Signalement::class)->getSignalementByVideoAndAdresseIp($video,$adresseIp))
         {
             $this->remove($signalement);
         }
@@ -77,9 +77,8 @@ class ReportingManager
      * @param Video $video
      * @return bool
      */
-    public function isReported(Video $video)
+    public function isReported(Video $video,$adresseIp)
     {
-        $adresseIp = $_SERVER['REMOTE_ADDR'];
         if($this->manager->getRepository(Signalement::class)->getSignalementByVideoAndAdresseIp($video,$adresseIp))
         {
             return TRUE;

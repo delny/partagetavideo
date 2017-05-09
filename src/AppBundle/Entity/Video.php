@@ -44,11 +44,6 @@ class Video
     private $url;
 
     /**
-     * @var string
-     */
-    private $urlNumber;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="user_id", type="integer")
@@ -249,16 +244,6 @@ class Video
     public function getUrlNumber()
     {
         return explode("=", $this->getUrl())[1];
-    }
-
-    /**
-     * @param string $urlNumber
-     * @return Video
-     */
-    public function setUrlNumber($urlNumber)
-    {
-        $this->urlNumber = $urlNumber;
-        return $this;
     }
 
     /**

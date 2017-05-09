@@ -42,10 +42,9 @@ class VueManager
     /**
      * @param Video $video
      */
-    public function increaseCount(Video $video)
+    public function increaseCount(Video $video,$adresseIp)
     {
         $videoId = $video->getId();
-        $adresseIp = $_SERVER['REMOTE_ADDR'];
         if(!$this->manager->getRepository(Vue::class)->getVueByVideoIdAndAdresseIp($videoId,$adresseIp))
         {
             $vue = $this->create();

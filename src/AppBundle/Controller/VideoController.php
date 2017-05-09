@@ -47,7 +47,7 @@ class VideoController extends Controller
     /**
      * @Route("/video/{id}", name="app_view_video")
      */
-    public function viewAction(Video $video)
+    public function viewAction(Video $video,Request $request)
     {
         //appels des manager
         $videoManager = $this->get('app.video_manager');
@@ -56,11 +56,11 @@ class VideoController extends Controller
 
         //augmentation des compteurs
         $videoManager->increaseCount($video);
-        $vueManager->increaseCount($video);
+        $vueManager->increaseCount($video,$request->getClientIp());
 
         return $this->render(':Video:view.html.twig', [
             'video' => $video,
-            'isReporting' => $reportingManager->isReported($video),
+            'isReporting' => $reportingManager->isReported($video,$request->getClientIp()),
         ]);
     }
 

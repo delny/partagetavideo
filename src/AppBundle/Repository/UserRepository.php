@@ -44,7 +44,9 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         $tableUser = $this->getClassMetadata()->getTableName();
 
         $sql = 'SELECT DISTINCT u.*,COUNT(f.id) as nombre_favoris ';
-        $sql .= 'FROM '.$tableUser.' AS u JOIN video AS v ON v.user_id = u.id JOIN favori AS f ON f.video_id = v.id ';
+        $sql .= 'FROM ';
+        $sql .= $tableUser;
+        $sql .= ' AS u JOIN video AS v ON v.user_id = u.id JOIN favori AS f ON f.video_id = v.id ';
         $sql .= 'WHERE u.enabled= :isActive AND username LIKE :nom ';
         $sql .= 'GROUP BY v.user_id ';
         $sql .= 'UNION ';

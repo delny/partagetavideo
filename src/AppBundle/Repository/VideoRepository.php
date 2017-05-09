@@ -93,8 +93,9 @@ class VideoRepository extends \Doctrine\ORM\EntityRepository
     {
         $tableVideo = $this->getClassMetadata()->getTableName();
 
-        $sql = 'SELECT v.*, COUNT(adresse_ip) AS total ';
-        $sql .= 'FROM '.$tableVideo.' As v JOIN signalement AS s ON v.id = s.video_id ';
+        $sql = 'SELECT v.*, COUNT(adresse_ip) AS total FROM ';
+        $sql .= $tableVideo;
+        $sql .= ' As v JOIN signalement AS s ON v.id = s.video_id ';
         $sql .= 'GROUP BY v.id ';
         $sql .= 'ORDER BY total DESC';
 
