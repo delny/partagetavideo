@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Video;
-use AppBundle\Form\VideoType;
+use AppBundle\Form\Type\VideoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -78,7 +78,7 @@ class VideoController extends Controller
         $videoManager = $this->get('app.video_manager');
 
         //creation formulaire
-        $form = $this->createForm(VideoType::class, $video);
+        $form = $this->createForm(\AppBundle\Form\Type\VideoType::class, $video);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
