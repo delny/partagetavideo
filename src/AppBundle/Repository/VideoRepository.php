@@ -13,6 +13,35 @@ use Doctrine\ORM\Query\ResultSetMappingBuilder;
 class VideoRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
+     * @param $offset
+     * @param $limit
+     * @return array
+     */
+    public function getAllVideos($offset,$limit)
+    {
+        return $this->createQueryBuilder('v')
+            ->select('v')
+            ->addOrderBy('v.id','DESC')
+            ->andWhere('v.isActive = :isActive')
+            ->setParameter('isActive', 1)
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountVideos()
+    {
+        return $this->createQueryBuilder('v')
+            ->select('COUNT(v.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
      * @param $url
      * @return mixed
      */
