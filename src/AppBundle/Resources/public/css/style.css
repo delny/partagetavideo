@@ -27,8 +27,40 @@ header .menu {
     padding-top: 51px;
 }
 /*Formulaire de connexion*/
-.form_signin {
-    padding:16px;
+.login-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+}
+.login-page .form {
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form-signin button, .form-signup button {
+    text-transform: uppercase;
+    outline: 0;
+    background: #008AE6;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+.form-signin button:hover,.form-signin button:active,.form-signin button:focus {
+    background: #006BB3;
+    color: #FFF;
+}
+.form-signup button:hover,.form-signup button:active,.form-signup button:focus {
+    background: #006BB3;
+    color: #FFF;
 }
 .error {
     color:#F11;
@@ -93,20 +125,4 @@ td, th {
 /* si videos desactive*/
 .unactive {
     filter:brightness(20%);
-}
-
-/*Espace admin*/
-.form_container {
-    width:1170px;
-    height:800px;
-    margin:0 auto;
-    display:flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-}
-.form_container form label {
-    width:140px;
 }

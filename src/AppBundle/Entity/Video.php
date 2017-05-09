@@ -36,7 +36,7 @@ class Video
      * @ORM\Column(name="url", type="string", length=255)
      *
      * @Assert\Regex(
-     *     pattern="/^http[s]{0,1}:\/\/www.youtube.com\/watch\?v=[a-zA-Z0-9]{11}$/i",
+     *     pattern="/^http[s]{0,1}:\/\/www.youtube.com\/watch\?v=[a-zA-Z0-9_-]{11}$/i",
      *     match= true,
      *     message="l'url n'est pas valide!"
      * )

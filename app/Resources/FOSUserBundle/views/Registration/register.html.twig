@@ -1,51 +1,53 @@
 {% extends '@FOSUser/layout.html.twig' %}
 
 {% block content %}
+    <div class="login-page">
+        <div class="form">
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-signup','name':'form'}}) }}
+            {{ form_label(form.username,"Login / Nom d'utilisateur") }}
+            {% if form_errors(form.username) %}
+                <div class="alert alert-danger">
+                    {{ form_errors(form.username) }}
+                </div>
+            {% endif %}
+            <div class="form-group">
+                {{ form_widget(form.username, {'attr': {'class':'form-control'}}) }}
+            </div>
 
-    <form class="form-signin" name="form" method="post" action="{{ path('fos_user_security_check') }}">
-    </form>
+            {{ form_label(form.email,"Adresse email") }}
+            {% if form_errors(form.email) %}
+                <div class="alert alert-danger">
+                    {{ form_errors(form.email) }}
+                </div>
+            {% endif %}
+            <div class="form-group">
+                {{ form_widget(form.email, {'attr': {'class':'form-control'}}) }}
+            </div>
 
-    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-signup','name':'form'}}) }}
+            {{ form_label(form.plainPassword.first,"Mot de passe") }}
+            {% if form_errors(form.plainPassword.first) %}
+                <div class="alert alert-danger">
+                    {{ form_errors(form.plainPassword.first) }}
+                </div>
+            {% endif %}
+            <div class="form-group">
+                {{ form_widget(form.plainPassword.first, {'attr': {'class':'form-control'}}) }}
+            </div>
 
-    {{ form_label(form.username,"Login / Nom d'utilisateur") }}
-    {% if form_errors(form.username) %}
-        <div class="alert alert-danger">
-            {{ form_errors(form.username) }}
+
+            {{ form_label(form.plainPassword.second,"Confirmez votre mot de passe") }}
+            {% if form_errors(form.plainPassword.second) %}
+                <div class="alert alert-danger">
+                    {{ form_errors(form.plainPassword.second) }}
+                </div>
+            {% endif %}
+            {{ form_widget(form.plainPassword.second, {'attr': {'class':'form-control'}}) }}
+
+            <button class="btn btn-default" type="submit">Cr&eacute;er un compte</button>
+            <p class="message">
+                Déjà un compte ? <a href="{{ path('fos_user_security_login') }}">Se connecter</a>
+            </p>
+            {{ form_end(form) }}
         </div>
-    {% endif %}
-    <div class="form-group">
-        {{ form_widget(form.username, {'attr': {'class':'form-control'}}) }}
     </div>
-
-    {{ form_label(form.email,"Adresse email") }}
-    {% if form_errors(form.email) %}
-        <div class="alert alert-danger">
-            {{ form_errors(form.email) }}
-        </div>
-    {% endif %}
-    <div class="form-group">
-        {{ form_widget(form.email, {'attr': {'class':'form-control'}}) }}
-    </div>
-
-    {{ form_label(form.plainPassword.first,"Mot de passe") }}
-    {% if form_errors(form.plainPassword.first) %}
-        <div class="alert alert-danger">
-            {{ form_errors(form.plainPassword.first) }}
-        </div>
-    {% endif %}
-    <div class="form-group">
-        {{ form_widget(form.plainPassword.first, {'attr': {'class':'form-control'}}) }}
-    </div>
-
-
-    {{ form_label(form.plainPassword.second,"Confirmez votre mot de passe") }}
-    {% if form_errors(form.plainPassword.second) %}
-        <div class="alert alert-danger">
-            {{ form_errors(form.plainPassword.second) }}
-        </div>
-    {% endif %}
-    {{ form_widget(form.plainPassword.second, {'attr': {'class':'form-control'}}) }}
-
-    <button class="btn-signup">Cr&eacute;er un compte</button>
-    {{ form_end(form) }}
 {% endblock %}
