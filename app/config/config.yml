@@ -7,7 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
-    mailer_user:  'admin@admin.fr'
+    mailer_user:  'anthony@anthonydelgado.fr'
 
 framework:
     #esi: ~
@@ -78,3 +78,6 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+    registration:
+        confirmation:
+            enabled: true
