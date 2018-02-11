@@ -67,15 +67,16 @@ class VideoController extends Controller
     /**
      * @Route("/video/edit/{id}", name="app_edit_video")
      */
-    public function editAction(Request $request,Video $video)
+    public function editAction(Request $request,$id)
     {
-        if ($video->getUser() != $this->getUser())
+        //appel manager
+        $videoManager = $this->get('app.video_manager');
+        $video = $videoManager->getVideoById($id);
+
+        if (empty($video) || ($video->getUser() != $this->getUser()))
         {
             return $this->redirectToRoute('homepage');
         }
-
-        //appel manager
-        $videoManager = $this->get('app.video_manager');
 
         //creation formulaire
         $form = $this->createForm(\AppBundle\Form\Type\VideoType::class, $video);

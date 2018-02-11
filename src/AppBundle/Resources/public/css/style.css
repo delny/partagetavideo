@@ -79,23 +79,22 @@ td, th {
 .titlevideo, .titledonnees {
     position:relative;
 }
-.modifvideo, .modifdonnees {
+.modifvideo, .modifdonnees, .deletevideo {
     position: absolute;
     top:0;
     right: 0;
-    margin-right: 34px;
-    margin-top: 4px;
     display: inline-block;
-    color:#11F;  
+    margin-top: 4px;
+    color:#434343;
+}
+.modifvideo:hover, .deletevideo:hover{
+    color:#111;
+}
+.modifvideo, .modifdonnees {
+    margin-right: 34px;
 }
 .deletevideo {
-    position: absolute;
-    top:0;
-    right: 0;
     margin-right: 14px;
-    margin-top: 4px;
-    display: inline-block;
-    color:#F11;
 }
 .deletevideo a, .modifvideo a {
     text-decoration: none;
