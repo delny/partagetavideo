@@ -24,7 +24,7 @@
                     <li><a href="{{ path('homepage',{'page':i}) }}">{{ i }}</a></li>
                 {% endfor %}
                 <li>
-                    <a href="{{ nbPages }}" aria-label="Next">
+                    <a href="{{ path('homepage',{'page':nbPages}) }}" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
